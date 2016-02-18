@@ -80,12 +80,12 @@ Returns the class name at that location.
 #### view.classList.contains(className)
 Returns true or false if the class name exists in the class list.
 ```js
-  if (someButton.contains('hidden')) {
-     someButton.remove('hidden');
+  if (someButton.classList.contains('hidden')) {
+     someButton.classList.remove('hidden');
   } else {
-     someButton.add('hidden');
+     someButton.classList.add('hidden');
   }
 
-  // Although   someButton.toggle('hidden');    would be equivelent to the 5 lines above.
+  // Although   someButton.classList.toggle('hidden');    would be equivelent to the 5 lines above.
 ```
 
