@@ -233,17 +233,20 @@ function getElementsByClassName(v, clsName) {
 }
 
 function getElementsByTagName(v, tagName) {
+    // TagName is case-Insensitive
+    var tagNameLC = tagName.toLowerCase();
+
     var retVal=[];
     if (!v) {
         return retVal;
     }
 
-    if (v.typeName && v.typeName === tagName) {
+    if (v.typeName && v.typeName.toLowerCase() === tagNameLC) {
         retVal.push(v);
     }
 
     var tagNameCallback = function (child) {
-        if (child.typeName === tagName) {
+        if (child.typeName && child.typeName.toLowerCase() === tagNameLC) {
             retVal.push(child);
         }
         return true;
