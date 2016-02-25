@@ -5,12 +5,12 @@
  * I do contract work in most languages, so let me solve your problems!
  *
  * Any questions please feel free to email me or put a issue up on the github repo
- * Version 0.0.2                                      Nathan@master-technology.com
+ * Version 0.0.3                                      Nathan@master-technology.com
  *********************************************************************************/
 "use strict";
 
 /* jshint node: true, browser: true, unused: true, undef: true */
-/* global android, com, java, javax, exit, UIDevice, CFAbsoluteTimeGetCurrent, NSRunLoop, NSDate */
+/* global global, android, com, java, javax, exit, UIDevice, CFAbsoluteTimeGetCurrent, NSRunLoop, NSDate */
 
 
 // Load the required modules
@@ -76,7 +76,7 @@ if (!global.getElementsByTagName) {
      * @returns {Array}
      */
     global.getElementsByTagName = function (tagName) {
-        return getElementsByTagName(getCurrentActiveModel, tagName);
+        return getElementsByTagName(getCurrentActiveModel(), tagName);
     };
 }
 
