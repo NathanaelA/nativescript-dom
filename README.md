@@ -44,7 +44,7 @@ Like there Web DOM counterparts; returns the children elements based on the crit
 ```js
 exports.pageLoaded = function(args) {
   var page = args.object;
-  var stackLayout = page.getElementsTagName('StackLayout')[0];
+  var stackLayout = page.getElementsByTagName('StackLayout')[0];
   var button = stackLayout.getElementsByClassName('clickButton')[0];
   button.classList.toggle('hidden');
 }
