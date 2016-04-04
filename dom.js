@@ -5,7 +5,7 @@
  * I do contract work in most languages, so let me solve your problems!
  *
  * Any questions please feel free to email me or put a issue up on the github repo
- * Version 0.0.3                                      Nathan@master-technology.com
+ * Version 0.0.4                                      Nathan@master-technology.com
  *********************************************************************************/
 "use strict";
 
@@ -32,7 +32,7 @@ if (!global.getElementById) {
      * @returns {view} or {undefined}
      */
     global.getElementById = function (id) {
-        return view.getViewById(getCurrentActiveModel(), id);
+        return getElementById(getCurrentActiveModel(), id);
     };
 }
 
@@ -43,7 +43,7 @@ if (!view.View.prototype.getElementById) {
      * @returns {view} or {undefined}
      */
     view.View.prototype.getElementById = function (id) {
-        return view.getViewById(this, id);
+        return getElementById(this, id);
     };
 }
 
@@ -190,19 +190,73 @@ if (!view.View.prototype.classList) {
 
 
 /*** Support routines, not publicly accessible ***/
+function getElementById(v, id) {
+        if (!v) {
+            return undefined;
+        }
+        if (v.id === id) {
+            return view;
+        }
+        var retVal=undefined;
+        var viewCallBack = function (child) {
+            if (child.id === id) {
+                retVal = child;
+                return false;
+            }
+
+            // Android patch for ListView
+            if (child._realizedItems) {
+                for (var key in child._realizedItems) {
+                    if (child._realizedItems.hasOwnProperty(key)) {
+                        // We return false, when we have a hit; so if we have a hit we can stop searching
+                        if (!viewCallBack(child._realizedItems[key])) {
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            return true;
+        };
+
+        view.eachDescendant(v, viewCallBack);
+
+        if (typeof retVal === "undefined") {
+            // Android patch for ListView
+            if (v._realizedItems) {
+                for (var key in v._realizedItems) {
+                    if (v._realizedItems.hasOwnProperty(key)) {
+                        // viewCallback will return false, if we found a match
+                        if (!viewCallBack(v._realizedItems[key])) {
+                            return retVal;
+                        }
+                    }
+                }
+            }
+        }
+
+        return retVal;
+}
+
 function getElementsByClassName(v, clsName) {
     var retVal=[];
     if (!v) {
         return retVal;
     }
 
+    // This does a rough check, but if you have a "class" of "hello" then "ello" will think it is valid
     if (v._cssClasses && v._cssClasses.length && v._cssClasses.indexOf(clsName) !== -1) {
-        retVal.push(v);
+        if (v.classList.contains(clsName)) {
+            retVal.push(v);
+        }
     }
 
     var classNameCallback = function (child) {
+        // This does a rough check, but if you have a "class" of "hello" then "ello" will think it is valid
         if (child._cssClasses && child._cssClasses.length && child._cssClasses.indexOf(clsName) !== -1) {
-            retVal.push(child);
+            if (child.classList.contains(clsName)) {
+                retVal.push(child);
+            }
         }
         
         // Android patch for ListView
@@ -249,10 +303,30 @@ function getElementsByTagName(v, tagName) {
         if (child.typeName && child.typeName.toLowerCase() === tagNameLC) {
             retVal.push(child);
         }
+
+        // Android patch for ListView
+        if (child._realizedItems) {
+            for (var key in child._realizedItems) {
+                if (child._realizedItems.hasOwnProperty(key)) {
+                    tagNameCallback(child._realizedItems[key]);
+                }
+            }
+        }
+
         return true;
     };
 
     view.eachDescendant(v, tagNameCallback);
+
+    // Android patch for ListView
+    if (v._realizedItems) {
+        for (var key in v._realizedItems) {
+            if (v._realizedItems.hasOwnProperty(key)) {
+                tagNameCallback(v._realizedItems[key]);
+            }
+        }
+    }
+
     return retVal;
 }
 
