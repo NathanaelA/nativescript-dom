@@ -1,0 +1,9 @@
+demo/
+.git/
+.gitignore
+.idea/
+docs/
+*.tar
+*.tgz
+.npmignore
+
