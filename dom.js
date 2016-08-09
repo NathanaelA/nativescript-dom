@@ -5,7 +5,7 @@
  * I do contract work in most languages, so let me solve your problems!
  *
  * Any questions please feel free to email me or put a issue up on the github repo
- * Version 0.0.4                                      Nathan@master-technology.com
+ * Version 0.0.5                                      Nathan@master-technology.com
  *********************************************************************************/
 "use strict";
 
@@ -178,7 +178,7 @@ if (!view.View.prototype.classList) {
         }
     };
     classList.prototype.contains = function(c) {
-            return this.indexOf(c) >= 0;
+        return this.indexOf(c) >= 0;
     };
     var getClassList = function (val) {
         var cl = new classList(val);
@@ -188,54 +188,77 @@ if (!view.View.prototype.classList) {
     Object.defineProperty(view.View.prototype, "classList", {configurable: true, enumerable: true, get: function() { return getClassList(this); }});
 }
 
+global.runAgainstClasses = function(clsName, func) {
+    runAgainstClasses(getCurrentActiveModel(), clsName, func);
+};
+view.View.prototype.runAgainstClasses = function(clsName, func) {
+    runAgainstClasses(this, clsName, func);
+};
+
+global.runAgainstTagNames = function(tagName, func) {
+    runAgainstTagNames(getCurrentActiveModel(), tagName, func);
+};
+view.View.prototype.runAgainstTagNames = function(tagName, func) {
+    runAgainstTagNames(this, tagName, func);
+};
+
+global.runAgainstId = function(id, func) {
+    runAgainstId(getCurrentActiveModel(), id, func);
+};
+view.View.prototype.runAgainstId = function(id, func) {
+    runAgainstTagNames(this, id, func);
+};
+
+
+
 
 /*** Support routines, not publicly accessible ***/
 function getElementById(v, id) {
-        if (!v) {
-            return undefined;
+    if (!v) {
+        return undefined;
+    }
+    if (v.id === id) {
+        return view;
+    }
+    var retVal=undefined;
+    var viewCallBack = function (child) {
+        if (child.id === id) {
+            retVal = child;
+            return false;
         }
-        if (v.id === id) {
-            return view;
-        }
-        var retVal=undefined;
-        var viewCallBack = function (child) {
-            if (child.id === id) {
-                retVal = child;
-                return false;
-            }
 
-            // Android patch for ListView
-            if (child._realizedItems) {
-                for (var key in child._realizedItems) {
-                    if (child._realizedItems.hasOwnProperty(key)) {
-                        // We return false, when we have a hit; so if we have a hit we can stop searching
-                        if (!viewCallBack(child._realizedItems[key])) {
-                            return false;
-                        }
-                    }
-                }
-            }
-
-            return true;
-        };
-
-        view.eachDescendant(v, viewCallBack);
-
-        if (typeof retVal === "undefined") {
-            // Android patch for ListView
-            if (v._realizedItems) {
-                for (var key in v._realizedItems) {
-                    if (v._realizedItems.hasOwnProperty(key)) {
-                        // viewCallback will return false, if we found a match
-                        if (!viewCallBack(v._realizedItems[key])) {
-                            return retVal;
-                        }
+        // Android patch for ListView
+        if (child._realizedItems) {
+            for (var key in child._realizedItems) {
+                if (child._realizedItems.hasOwnProperty(key)) {
+                    // We return false, when we have a hit; so if we have a hit we can stop searching
+                    if (!viewCallBack(child._realizedItems[key])) {
+                        return false;
                     }
                 }
             }
         }
 
-        return retVal;
+        return true;
+    };
+
+    view.eachDescendant(v, viewCallBack);
+
+    if (typeof retVal === "undefined") {
+        // Android patch for ListView
+        if (v._realizedItems) {
+            for (var key in v._realizedItems) {
+                if (v._realizedItems.hasOwnProperty(key)) {
+                    // viewCallback will return false, if we found a match
+                    if (!viewCallBack(v._realizedItems[key])) {
+                        return retVal;
+                    }
+                }
+            }
+        }
+    }
+
+    return retVal;
 }
 
 function getElementsByClassName(v, clsName) {
@@ -258,7 +281,7 @@ function getElementsByClassName(v, clsName) {
                 retVal.push(child);
             }
         }
-        
+
         // Android patch for ListView
         if (child._realizedItems) {
             for (var key in child._realizedItems) {
@@ -336,3 +359,22 @@ var getCurrentActiveModel = function() {
     if (model) { return model; }
     return topFrame;
 };
+
+function runAgainstClasses(v, clsName, func) {
+    var elements = getElementsByClassName(v, clsName);
+    for (var i=0;i<elements.length;i++) {
+        func(elements[i]);
+    }
+}
+
+function runAgainstTagNames(v, tagName, func) {
+    var elements = getElementsByTagName(v, tagName);
+    for (var i=0;i<elements.length;i++) {
+        func(elements[i]);
+    }
+}
+
+function runAgainstId(v, id, func) {
+    var element = getElementById(v, id);
+    if (element) { func(element); }
+}
