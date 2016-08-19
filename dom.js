@@ -5,7 +5,7 @@
  * I do contract work in most languages, so let me solve your problems!
  *
  * Any questions please feel free to email me or put a issue up on the github repo
- * Version 0.0.5                                      Nathan@master-technology.com
+ * Version 0.0.6                                      Nathan@master-technology.com
  *********************************************************************************/
 "use strict";
 
@@ -94,23 +94,48 @@ if (!view.View.prototype.getElementsByTagName) {
 if (!view.View.prototype.classList) {
     var classList = function(t) {
         var curClassList = "";
-        this._resync = function() {
-            if (curClassList === t.cssClass) { return; }
-            var cls = t._cssClasses;
-            var len = cls.length;
 
-            // We need to zero our length; so that we can re-add anything that exists in the parent class
-            this.length = 0;
-            for (var i = 0; i < len; i++) {
-                if (!this.contains(cls[i])) {
-                    this.push(cls[i]);
+        // V2.2 Change
+        if (typeof t.cssClasses !== "undefined") {
+            this._resync = function() {
+                if (curClassList === t.cssClass) {
+                    return;
                 }
-            }
-        };
-        this._update = function () {
-            t.cssClass = this.join(" ");
-            curClassList = t.cssClass;
-        };
+
+                // We need to zero our length; so that we can re-add anything that exists in the parent class
+                this.length = 0;
+                var self = this;
+                t.cssClasses.forEach(function(item) { self.push(item); });
+            };
+
+            this._update = function () {
+                curClassList = this.join(" ");
+                t.cssClass = curClassList ;
+            };
+
+        } else {
+
+            this._resync = function () {
+                if (curClassList === t.cssClass) {
+                    return;
+                }
+                var cls = t._cssClasses;
+                var len = cls.length;
+
+                // We need to zero our length; so that we can re-add anything that exists in the parent class
+                this.length = 0;
+                for (var i = 0; i < len; i++) {
+                    if (!this.contains(cls[i])) {
+                        this.push(cls[i]);
+                    }
+                }
+            };
+
+            this._update = function () {
+                t.cssClass = this.join(" ");
+                curClassList = t.cssClass;
+            };
+        }
 
         this._resync();
     };
@@ -228,7 +253,7 @@ function getElementById(v, id) {
         }
 
         // Android patch for ListView
-        if (child._realizedItems) {
+        if (child._realizedItems && child._realizedItems.size !== child._childrenCount) {
             for (var key in child._realizedItems) {
                 if (child._realizedItems.hasOwnProperty(key)) {
                     // We return false, when we have a hit; so if we have a hit we can stop searching
@@ -246,7 +271,7 @@ function getElementById(v, id) {
 
     if (typeof retVal === "undefined") {
         // Android patch for ListView
-        if (v._realizedItems) {
+        if (v._realizedItems && v._realizedItems.size !== v._childrenCount) {
             for (var key in v._realizedItems) {
                 if (v._realizedItems.hasOwnProperty(key)) {
                     // viewCallback will return false, if we found a match
@@ -267,23 +292,19 @@ function getElementsByClassName(v, clsName) {
         return retVal;
     }
 
-    // This does a rough check, but if you have a "class" of "hello" then "ello" will think it is valid
-    if (v._cssClasses && v._cssClasses.length && v._cssClasses.indexOf(clsName) !== -1) {
-        if (v.classList.contains(clsName)) {
+    if (v.classList.contains(clsName)) {
             retVal.push(v);
-        }
     }
+
 
     var classNameCallback = function (child) {
         // This does a rough check, but if you have a "class" of "hello" then "ello" will think it is valid
-        if (child._cssClasses && child._cssClasses.length && child._cssClasses.indexOf(clsName) !== -1) {
-            if (child.classList.contains(clsName)) {
+        if (child.classList.contains(clsName)) {
                 retVal.push(child);
-            }
         }
 
         // Android patch for ListView
-        if (child._realizedItems) {
+        if (child._realizedItems && child._realizedItems.size !== child._childrenCount) {
             for (var key in child._realizedItems) {
                 if (child._realizedItems.hasOwnProperty(key)) {
                     classNameCallback(child._realizedItems[key]);
@@ -297,7 +318,7 @@ function getElementsByClassName(v, clsName) {
     view.eachDescendant(v, classNameCallback);
 
     // Android patch for ListView
-    if (v._realizedItems) {
+    if (v._realizedItems && v._realizedItems.size !== v._childrenCount) {
         for (var key in v._realizedItems) {
             if (v._realizedItems.hasOwnProperty(key)) {
                 classNameCallback(v._realizedItems[key]);
@@ -328,7 +349,7 @@ function getElementsByTagName(v, tagName) {
         }
 
         // Android patch for ListView
-        if (child._realizedItems) {
+        if (child._realizedItems && child._realizedItems.size !== child._childrenCount) {
             for (var key in child._realizedItems) {
                 if (child._realizedItems.hasOwnProperty(key)) {
                     tagNameCallback(child._realizedItems[key]);
@@ -342,7 +363,7 @@ function getElementsByTagName(v, tagName) {
     view.eachDescendant(v, tagNameCallback);
 
     // Android patch for ListView
-    if (v._realizedItems) {
+    if (v._realizedItems && v._realizedItems.size !== v._childrenCount) {
         for (var key in v._realizedItems) {
             if (v._realizedItems.hasOwnProperty(key)) {
                 tagNameCallback(v._realizedItems[key]);

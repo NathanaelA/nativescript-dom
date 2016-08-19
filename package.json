@@ -1,6 +1,6 @@
 {
   "name": "nativescript-dom",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A NativeScript module for DOM Emulation",
   "main": "dom.js",
   "nativescript": {
