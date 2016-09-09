@@ -6,4 +6,4 @@ docs/
 *.tar
 *.tgz
 .npmignore
-
+!index.d.ts

@@ -2,7 +2,7 @@
 [![npm](https://img.shields.io/npm/l/nativescript-dom.svg)](https://www.npmjs.com/package/nativescript-dom)
 [![npm](https://img.shields.io/npm/dt/nativescript-dom.svg?label=npm%20d%2fls)](https://www.npmjs.com/package/nativescript-dom)
 
-# nativescript-dom
+# NativeScript-DOM
 A class of DOM based NativeScript functions
 
 ## License
@@ -60,19 +60,34 @@ exports.pageLoaded = function(args) {
 ```
 
 
-#### view.classList.add(className)
+### view.runAgainstId(id, function(elem) { /* Do something with elem */ })
+### view.runAgainstClasses(className, function(elem) { /* Do something with elem */ })
+### view.runAgainstTagNames(tag, function(elem) { /* Do something with elem */ })
+This will automatically run your function passing it the elem that it matches; it will call your function multiple times once for each element that matches your selection.
+```
+exports.pageLoaded = function(args) {
+  var page = args.object;
+  page.runAgainstClasses('clickButton', function(elem) {  
+      elem.classList.toggle('hidden');
+  });
+}
+```
+  
+
+
+#### view.classList.add(className, className, ...)
 Add a class to the view's class list at the end
 ```js
    someButton.classList.add('hidden');  // ClassList on this button will be "class1 class2 classx hidden"
 ```
 
-#### view.classList.insert(className)
+#### view.classList.insert(className, className, ...)
 Add a class to the view's class list at the front
 ```js
    someButton.classList.insert('hidden'); // ClassList on this button will be "hidden class1 class2 classx"
 ```
 
-#### view.classList.remove(className)
+#### view.classList.remove(className, className, ...)
 Removes a class from the view's class list
 ```js
    someButton.classList.remove('hidden'); // ClassList would then equal "class1 class2 class3"
@@ -95,6 +110,11 @@ Returns true or false if the class name exists in the class list.
      someButton.classList.add('hidden');
   }
 
-  // Although   someButton.classList.toggle('hidden');    would be equivelent to the 5 lines above.
+  // someButton.classList.toggle('hidden');    would be equivelent to the 5 lines above.
 ```
 
+
+
+## Thanks & Contributors
+
+- Brad Martin - For the TS Typings
