@@ -3,23 +3,37 @@
   "version": "1.0.6",
   "description": "A NativeScript module for DOM Emulation",
   "main": "dom.js",
+  "typings": "index.d.ts",
   "nativescript": {
-	"platforms": {
-		"android": "1.0.0",
-		"ios": "1.0.0"
-	}
+    "platforms": {
+      "android": "1.0.0",
+      "ios": "1.0.0"
+    }
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/nathanaela/nativescript-dom.git"
   },
   "keywords": [
-    "NativeScript", "dom", "development", "classList", "getElementById", "getElementsByTagName", "getElementsByClassName"
+    "NativeScript",
+    "dom",
+    "development",
+    "classList",
+    "getElementById",
+    "getElementsByTagName",
+    "getElementsByClassName"
   ],
   "author": {
     "name": "Nathanael Anderson",
     "email": "nathan@master-technology.com"
   },
+  "contributors": [
+    {
+      "name": "Brad Martin",
+      "email": "bradwaynemartin@gmail.com",
+      "url": "https://github.com/bradmartin"
+    }
+  ],
   "license": {
     "type": "MIT",
     "url": "https://github.com/nathanaela/nativescript-dom/blob/master/LICENSE"

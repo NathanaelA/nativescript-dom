@@ -83,8 +83,8 @@ Toggles a class name
 if force = true, will force adding the class name only.     (And won't remove it, but you won't have a second)
 if force = false, will force removing the class name only.  (And won't add it)
 
-#### view.classList.item(id) 
-Returns the class name at that location.
+#### view.classList.item(index) 
+Returns the class name at that location in the class list.
 
 #### view.classList.contains(className)
 Returns true or false if the class name exists in the class list.
