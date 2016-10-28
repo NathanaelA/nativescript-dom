@@ -30,7 +30,7 @@ export function getElementsByTagName(tagName: string): Array<View>;
  * @param {string} id - The view id.
  * @param {Function} callback - The function to run
  */
-export function runAgainstId(id: string, callback: (data: View) => void);
+export function runAgainstId(id: string, callback: (element: View) => void);
 
 
 /**
@@ -38,7 +38,7 @@ export function runAgainstId(id: string, callback: (data: View) => void);
  * @param {string} className - The tag name to get children elements with.
  * @param {Function} callback - The function to run
  */
-export function runAgainstClasses(className: string, callback: (data: View) => void);
+export function runAgainstClasses(className: string, callback: (element: View) => void);
 
 
 /**
@@ -46,7 +46,7 @@ export function runAgainstClasses(className: string, callback: (data: View) => v
  * @param {string} tagName - The tag name to get children elements with.
  * @param {Function} callback - The function to run
  */
-export function runAgainstTagNames(tagName: string, callback: (data: View) => void);
+export function runAgainstTagNames(tagName: string, callback: (element: View) => void);
 
 
 declare module "ui/core/view" {
@@ -78,20 +78,20 @@ declare module "ui/core/view" {
          * Execute a function on any child view with the id. ** NativeScript DOM plugin only **
          * @param {string} id - The view id.
          */
-        runAgainstId(id: string, callback: (data: View) => void);
+        runAgainstId(id: string, callback: (element: View) => void);
 
         /**
          * Executes a function on the child view components with the className. ** NativeScript DOM plugin only **
          * @param {string} className - The tag name to get children elements with.
          */
-        runAgainstClasses(className: string, callback: (data: View) => void);
+        runAgainstClasses(className: string, callback: (element: View) => void);
 
 
         /**
          * Executes a function on the child view components with the tagName. ** NativeScript DOM plugin only **
          * @param {string} tagName - The tag name to get children elements with.
          */
-        runAgainstTagNames(tagName: string, callback: (data: View) => void);
+        runAgainstTagNames(tagName: string, callback: (element: View) => void);
 
 
         /**
