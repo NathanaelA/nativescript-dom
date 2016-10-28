@@ -113,7 +113,13 @@ Returns true or false if the class name exists in the class list.
   // someButton.classList.toggle('hidden');    would be equivelent to the 5 lines above.
 ```
 
+#### TypeScript Global Augmentation
+This module ships a file, **dom-global.d.ts**, to enable intellisense and benefit from the TypeScript Typings
+add a reference in your *references.d.ts* file. Below is the snippet you can paste into the *references.d.ts* in the root of your app.
 
+<sub>*You may need to restart your IDE for it to resolve the added typings.*</sub>
+
+`/// <reference path="./node_modules/nativescript-dom/dom-global.d.ts" />`
 
 ## Thanks & Contributors
 
