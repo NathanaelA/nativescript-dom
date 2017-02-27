@@ -41,7 +41,11 @@ It will automatically attach its methods to all the proper classes in the Native
 
 ```js
 view.getElementById(id)
+```
+```js
 view.getElementsByClassName(className)
+```
+```js
 view.getElementsByTagName(tagName)
 ```
 These are globally available!  Like there Web DOM counterparts; they return elements based on the critera.
@@ -62,7 +66,11 @@ exports.pageLoaded = function(args) {
 
 ```js
 view.runAgainstId(id, function(elem) { /* Do something with elem */ })
+```
+```js
 view.runAgainstClasses(className, function(elem) { /* Do something with elem */ })
+```
+```js
 view.runAgainstTagNames(tag, function(elem) { /* Do something with elem */ })
 ```
 This will automatically run your function passing it the elem that it matches; it will call your function multiple times once for each element that matches your selection.
