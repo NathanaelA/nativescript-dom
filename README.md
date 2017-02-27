@@ -28,7 +28,7 @@ To use the  module you just `require()` it:
 require("nativescript-dom");
 ```
 
-**Note:* You do NOT need to keep a reference to it; and you only need to load it once.
+**Note:** You do NOT need to keep a reference to it; and you only need to load it once.
 It will automatically attach its methods to all the proper classes in the NativeScript library, making it act as if they are built in.
 
 ### Methods
@@ -42,7 +42,7 @@ These are globally available! Like their Web DOM counterparts; they return eleme
 #### `view.getElementById(id)`
 #### `view.getElementsByClassName(className)`
 #### `view.getElementsByTagName(tagName)`
-Like theie Web DOM counterparts; returns the children elements based on the critera.
+Like their Web DOM counterparts; returns the children elements based on the critera.
 
 ```js
 exports.pageLoaded = function(args) {
