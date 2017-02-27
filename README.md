@@ -121,6 +121,6 @@ add a reference in your `references.d.ts` file. Below is the snippet you can pas
 
 ## Thanks & Contributors
 
-- Brad Martin - For the TS Typings
-- Danny Feliz - For Documentation Updates
-- CrazyPyton - For Documentation Updates
+- [Brad Martin](https://github.com/bradmartin) - For the TS Typings
+- [Danny Feliz](https://github.com/DannyFeliz) - For Documentation Updates
+- [CrazyPython](https://github.com/CrazyPython) - For Documentation Updates
