@@ -16,8 +16,9 @@ I also do contract work; so if you have a module you want built for NativeScript
 ## Updates
 Please feel free to fork this repo and update the functions or add additional DOM based functions!
 
-## Installation
-```js
+
+## Installation 
+```bash
 tns plugin add nativescript-dom  
 ```
 
@@ -25,7 +26,7 @@ tns plugin add nativescript-dom
 To use the  module you just `require()` it:
 
 ```js
-require( "nativescript-dom" );
+require("nativescript-dom");
 ```
 
 Notice: You do NOT need to keep a reference to it; and you only need to load it once.  
@@ -36,15 +37,14 @@ It will automatically attach its methods to all the proper classes in the Native
 #### `getElementById(id)`
 #### `getElementsByClassName(className)`
 #### `getElementsByTagName(tagName)`
+
 These are globally available!  Like there Web DOM counterparts; they return elements based on the critera.
-```js
-  var element = getElementById('someId');
-```
 
 #### `view.getElementById(id)`
 #### `view.getElementsByClassName(className)`
 #### `view.getElementsByTagName(tagName)`
 Like there Web DOM counterparts; returns the children elements based on the critera.
+
 ```js
 exports.pageLoaded = function(args) {
   var page = args.object;
@@ -54,12 +54,12 @@ exports.pageLoaded = function(args) {
 }
 ```
 
-
 ### `view.runAgainstId(id, function(elem) { /* Do something with elem */ })`
 ### `view.runAgainstClasses(className, function(elem) { /* Do something with elem */ })`
 ### `view.runAgainstTagNames(tag, function(elem) { /* Do something with elem */ })`
 This will automatically run your function passing it the elem that it matches; it will call your function multiple times once for each element that matches your selection.
-```
+
+```js
 exports.pageLoaded = function(args) {
   var page = args.object;
   page.runAgainstClasses('clickButton', function(elem) {  
@@ -68,24 +68,24 @@ exports.pageLoaded = function(args) {
 }
 ```
   
-
-
 #### `view.classList.add(className, className, ...)`
 Add a class to the view's class list at the end
+
 ```js
-   someButton.classList.add('hidden');  // ClassList on this button will be "class1 class2 classx hidden"
+someButton.classList.add('hidden');  // ClassList on this button will be "class1 class2 classx hidden"
 ```
 
 #### `view.classList.insert(className, className, ...)`
 Add a class to the view's class list at the front
 ```js
-   someButton.classList.insert('hidden'); // ClassList on this button will be "hidden class1 class2 classx"
+someButton.classList.insert('hidden'); // ClassList on this button will be "hidden class1 class2 classx"
 ```
+
 
 #### `view.classList.remove(className, className, ...)`
 Removes a class from the view's class list
 ```js
-   someButton.classList.remove('hidden'); // ClassList would then equal "class1 class2 class3"
+someButton.classList.remove('hidden'); // ClassList would then equal "class1 class2 class3"
 ```
    
 #### `view.classList.toggle(className[, force])`
@@ -99,11 +99,11 @@ Returns the class name at that location in the class list.
 #### `view.classList.contains(className)`
 Returns true or false if the class name exists in the class list.
 ```js
-  if (someButton.classList.contains('hidden')) {
-     someButton.classList.remove('hidden');
-  } else {
-     someButton.classList.add('hidden');
-  }
+if (someButton.classList.contains('hidden')) {
+    someButton.classList.remove('hidden');
+} else {
+    someButton.classList.add('hidden');
+ }
 
   // someButton.classList.toggle('hidden');    would be equivelent to the 5 lines above.
 ```
@@ -114,10 +114,13 @@ add a reference in your `references.d.ts` file. Below is the snippet you can pas
 
 <sub>*You may need to restart your IDE for it to resolve the added typings.*</sub>
 
-```js
+
+```xml
 /// <reference path="./node_modules/nativescript-dom/dom-global.d.ts" />
 ```
 
 ## Thanks & Contributors
 
 - Brad Martin - For the TS Typings
+- Danny Feliz - For Documentation Updates
+- CrazyPyton - For Documentation Updates
