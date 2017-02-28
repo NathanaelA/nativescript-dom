@@ -16,7 +16,6 @@ I also do contract work; so if you have a module you want built for NativeScript
 ## Updates
 Please feel free to fork this repo and update the functions or add additional DOM based functions!
 
-
 ## Installation 
 ```bash
 tns plugin add nativescript-dom  
@@ -29,8 +28,8 @@ To use the  module you just `require()` it:
 require("nativescript-dom");
 ```
 
-Notice: You do NOT need to keep a reference to it; and you only need to load it once.  
-It will automatically attach its methods to all the proper classes in the NativeScript library making it act as if they are built in.
+**Note:** You do NOT need to keep a reference to it; and you only need to load it once.
+It will automatically attach its methods to all the proper classes in the NativeScript library, making it act as if they are built in.
 
 ### Methods
 
@@ -38,12 +37,12 @@ It will automatically attach its methods to all the proper classes in the Native
 #### `getElementsByClassName(className)`
 #### `getElementsByTagName(tagName)`
 
-These are globally available!  Like there Web DOM counterparts; they return elements based on the critera.
+These are globally available! Like their Web DOM counterparts; they return elements based on the critera.
 
 #### `view.getElementById(id)`
 #### `view.getElementsByClassName(className)`
 #### `view.getElementsByTagName(tagName)`
-Like there Web DOM counterparts; returns the children elements based on the critera.
+Like their Web DOM counterparts; returns the children elements based on the critera.
 
 ```js
 exports.pageLoaded = function(args) {
@@ -110,7 +109,7 @@ if (someButton.classList.contains('hidden')) {
 
 #### TypeScript Global Augmentation
 This module ships a file, `dom-global.d.ts`, to enable intellisense and benefit from the TypeScript Typings
-add a reference in your `references.d.ts` file. Below is the snippet you can paste into the *references.d.ts* in the root of your app.
+add a reference in your `references.d.ts` file. Below is the snippet you can paste into the `references.d.ts` in the root of your app.
 
 <sub>*You may need to restart your IDE for it to resolve the added typings.*</sub>
 
@@ -121,6 +120,6 @@ add a reference in your `references.d.ts` file. Below is the snippet you can pas
 
 ## Thanks & Contributors
 
-- Brad Martin - For the TS Typings
-- Danny Feliz - For Documentation Updates
-- CrazyPyton - For Documentation Updates
+- [Brad Martin](https://github.com/bradmartin) - For the TS Typings
+- [Danny Feliz](https://github.com/DannyFeliz) - For Documentation Updates
+- [CrazyPython](https://github.com/CrazyPython) - For Documentation Updates
