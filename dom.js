@@ -5,7 +5,7 @@
  * I do contract work in most languages, so let me solve your problems!
  *
  * Any questions please feel free to email me or put a issue up on the github repo
- * Version 0.0.6                                      Nathan@master-technology.com
+ * Version 0.0.7                                      Nathan@master-technology.com
  *********************************************************************************/
 "use strict";
 
@@ -298,8 +298,7 @@ function getElementsByClassName(v, clsName) {
 
 
     var classNameCallback = function (child) {
-        // This does a rough check, but if you have a "class" of "hello" then "ello" will think it is valid
-        if (child.classList.contains(clsName)) {
+		if (child.classList.contains(clsName)) {
                 retVal.push(child);
         }
 
@@ -334,17 +333,19 @@ function getElementsByTagName(v, tagName) {
     // TagName is case-Insensitive
     var tagNameLC = tagName.toLowerCase();
 
-    var retVal=[];
+    var retVal=[], allTags = false;
     if (!v) {
         return retVal;
     }
 
-    if (v.typeName && v.typeName.toLowerCase() === tagNameLC) {
+    if (tagName === '*') { allTags = true; }
+
+    if (v.typeName && v.typeName.toLowerCase() === tagNameLC || allTags) {
         retVal.push(v);
     }
 
     var tagNameCallback = function (child) {
-        if (child.typeName && child.typeName.toLowerCase() === tagNameLC) {
+        if (child.typeName && child.typeName.toLowerCase() === tagNameLC || allTags) {
             retVal.push(child);
         }
 

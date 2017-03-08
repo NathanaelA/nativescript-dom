@@ -1,8 +1,8 @@
 {
   "name": "nativescript-dom",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A NativeScript module for DOM Emulation",
-  "main": "dom.js",
+  "main": "dom",
   "typings": "index.d.ts",
   "nativescript": {
     "platforms": {

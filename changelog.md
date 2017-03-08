@@ -6,3 +6,4 @@
 - v1.05 - Added runAgainstId, runAgainstClasses & runAgainstTagNames
 - v1.06 - Compatibility with NS 2.2.x
 - v1.07 - Updated docs & Thanks to Brad for TypeScript typings!
+- v1.09 - getElementByTagName now supports *
