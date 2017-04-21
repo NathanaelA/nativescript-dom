@@ -14,7 +14,7 @@
 
 
 // Load the required modules
-var view = require('ui/core/view');
+var viewBase = require('ui/core/view-base');
 var frame = require('ui/frame');
 
 
@@ -29,20 +29,20 @@ if (!global.getElementById) {
     /***
      * Find a element by an id
      * @param id
-     * @returns {view} or {undefined}
+     * @returns {ViewBase} or {undefined}
      */
     global.getElementById = function (id) {
         return getElementById(getCurrentActiveModel(), id);
     };
 }
 
-if (!view.View.prototype.getElementById) {
+if (!viewBase.ViewBase.prototype.getElementById) {
     /***
      * Find an element by a id
      * @param id
-     * @returns {view} or {undefined}
+     * @returns {ViewBase} or {undefined}
      */
-    view.View.prototype.getElementById = function (id) {
+    viewBase.ViewBase.prototype.getElementById = function (id) {
         return getElementById(this, id);
     };
 }
@@ -58,13 +58,13 @@ if (!global.getElementsByClassName) {
     };
 }
 
-if (!view.View.prototype.getElementsByClassName) {
+if (!viewBase.ViewBase.prototype.getElementsByClassName) {
     /***
      * Finds all elements with the class name
      * @param className - the Class name
      * @returns {Array} of elements
      */
-    view.View.prototype.getElementsByClassName = function (className) {
+    viewBase.ViewBase.prototype.getElementsByClassName = function (className) {
         return getElementsByClassName(this, className);
     };
 }
@@ -80,25 +80,25 @@ if (!global.getElementsByTagName) {
     };
 }
 
-if (!view.View.prototype.getElementsByTagName) {
+if (!viewBase.ViewBase.prototype.getElementsByTagName) {
     /**
      * Finds all elements by a Tag name
      * @param tagName
      * @returns {Array}
      */
-    view.View.prototype.getElementsByTagName = function (tagName) {
+    viewBase.ViewBase.prototype.getElementsByTagName = function (tagName) {
         return getElementsByTagName(this, tagName);
     };
 }
 
-if (!view.View.prototype.classList) {
+if (!viewBase.ViewBase.prototype.classList) {
     var classList = function(t) {
         var curClassList = "";
 
         // V2.2 Change
         if (typeof t.cssClasses !== "undefined") {
             this._resync = function() {
-                if (curClassList === t.cssClass) {
+                if (curClassList === t.className) {
                     return;
                 }
 
@@ -110,13 +110,13 @@ if (!view.View.prototype.classList) {
 
             this._update = function () {
                 curClassList = this.join(" ");
-                t.cssClass = curClassList ;
+                t.className = curClassList ;
             };
 
         } else {
 
             this._resync = function () {
-                if (curClassList === t.cssClass) {
+                if (curClassList === t.className) {
                     return;
                 }
                 var cls = t._cssClasses;
@@ -132,8 +132,8 @@ if (!view.View.prototype.classList) {
             };
 
             this._update = function () {
-                t.cssClass = this.join(" ");
-                curClassList = t.cssClass;
+                t.className = this.join(" ");
+                curClassList = t.className;
             };
         }
 
@@ -210,28 +210,28 @@ if (!view.View.prototype.classList) {
         Object.defineProperty(val, "classList", { value: cl, configurable: true, enumerable: true });
         return cl;
     };
-    Object.defineProperty(view.View.prototype, "classList", {configurable: true, enumerable: true, get: function() { return getClassList(this); }});
+    Object.defineProperty(viewBase.ViewBase.prototype, "classList", {configurable: true, enumerable: true, get: function() { return getClassList(this); }});
 }
 
 global.runAgainstClasses = function(clsName, func) {
     runAgainstClasses(getCurrentActiveModel(), clsName, func);
 };
-view.View.prototype.runAgainstClasses = function(clsName, func) {
+viewBase.ViewBase.prototype.runAgainstClasses = function(clsName, func) {
     runAgainstClasses(this, clsName, func);
 };
 
 global.runAgainstTagNames = function(tagName, func) {
     runAgainstTagNames(getCurrentActiveModel(), tagName, func);
 };
-view.View.prototype.runAgainstTagNames = function(tagName, func) {
+viewBase.ViewBase.prototype.runAgainstTagNames = function(tagName, func) {
     runAgainstTagNames(this, tagName, func);
 };
 
 global.runAgainstId = function(id, func) {
     runAgainstId(getCurrentActiveModel(), id, func);
 };
-view.View.prototype.runAgainstId = function(id, func) {
-    runAgainstTagNames(this, id, func);
+viewBase.ViewBase.prototype.runAgainstId = function(id, func) {
+    runAgainstId(this, id, func);
 };
 
 
@@ -267,7 +267,7 @@ function getElementById(v, id) {
         return true;
     };
 
-    view.eachDescendant(v, viewCallBack);
+    viewBase.eachDescendant(v, viewCallBack);
 
     if (typeof retVal === "undefined") {
         // Android patch for ListView
@@ -314,7 +314,7 @@ function getElementsByClassName(v, clsName) {
         return true;
     };
 
-    view.eachDescendant(v, classNameCallback);
+    viewBase.eachDescendant(v, classNameCallback);
 
     // Android patch for ListView
     if (v._realizedItems && v._realizedItems.size !== v._childrenCount) {
@@ -361,7 +361,7 @@ function getElementsByTagName(v, tagName) {
         return true;
     };
 
-    view.eachDescendant(v, tagNameCallback);
+    viewBase.eachDescendant(v, tagNameCallback);
 
     // Android patch for ListView
     if (v._realizedItems && v._realizedItems.size !== v._childrenCount) {

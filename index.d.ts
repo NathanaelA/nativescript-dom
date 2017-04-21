@@ -1,12 +1,12 @@
-import { View } from "ui/core/view";
+import { ViewBase } from "ui/core/view-base";
 
 
 /**
  * Get the child element with the id. ** NativeScript DOM plugin only **
  * @param {string} id - The id of the element to get.
- * @returns {View} - The view element with the specified id.
+ * @returns {ViewBase} - The view element with the specified id.
  */
-export function getElementById(id: string): View;
+export function getElementById(id: string): ViewBase;
 
 
 /**
@@ -14,7 +14,7 @@ export function getElementById(id: string): View;
  * @param {string} className - The class name to get children elements with.
  * @returns {Array} - An array of view elements with the specified class name.
  */
-export function getElementsByClassName(className: string): Array<View>;
+export function getElementsByClassName(className: string): Array<ViewBase>;
 
 
 /**
@@ -22,7 +22,7 @@ export function getElementsByClassName(className: string): Array<View>;
  * @param {string} tagName - The tag name to get children elements with.
  * @returns {Array} - An array of view elements with the specified tag name.
  */
-export function getElementsByTagName(tagName: string): Array<View>;
+export function getElementsByTagName(tagName: string): Array<ViewBase>;
 
 
 /**
@@ -30,7 +30,7 @@ export function getElementsByTagName(tagName: string): Array<View>;
  * @param {string} id - The view id.
  * @param {Function} callback - The function to run
  */
-export function runAgainstId(id: string, callback: (element: View) => void);
+export function runAgainstId(id: string, callback: (element: ViewBase) => void);
 
 
 /**
@@ -38,7 +38,7 @@ export function runAgainstId(id: string, callback: (element: View) => void);
  * @param {string} className - The tag name to get children elements with.
  * @param {Function} callback - The function to run
  */
-export function runAgainstClasses(className: string, callback: (element: View) => void);
+export function runAgainstClasses(className: string, callback: (element: ViewBase) => void);
 
 
 /**
@@ -46,52 +46,52 @@ export function runAgainstClasses(className: string, callback: (element: View) =
  * @param {string} tagName - The tag name to get children elements with.
  * @param {Function} callback - The function to run
  */
-export function runAgainstTagNames(tagName: string, callback: (element: View) => void);
+export function runAgainstTagNames(tagName: string, callback: (element: ViewBase) => void);
 
 
-declare module "ui/core/view" {
-    interface View {
+declare module "ui/core/view-base" {
+    interface ViewBase {
 
         /**
          * Get the child element with the id. ** NativeScript DOM plugin only **
          * @param {string} id - The id of the element to get.
-         * @returns {View} - The view element with the specified id.
+         * @returns {ViewBase} - The view element with the specified id.
          */
-        getElementById(id: string): View;
+        getElementById(id: string): ViewBase;
 
         /**
          * Gets all child elements of the parent view with the specified className. ** NativeScript DOM plugin only **
          * @param {string} className - The class name to get children elements with.
         * @returns {Array} - An array of view elements with the specified class name.
          */
-        getElementsByClassName(className: string): Array<View>;
+        getElementsByClassName(className: string): Array<ViewBase>;
 
         /**
          * Gets all child elements with specified tag name in the parent view. ** NativeScript DOM plugin only **
          * @param {string} tagName - The tag name to get children elements with.
          * @returns {Array} - An array of view elements with the specified tag name.
          */
-        getElementsByTagName(tagName: string): Array<View>;
+        getElementsByTagName(tagName: string): Array<ViewBase>;
 
 
         /**
          * Execute a function on any child view with the id. ** NativeScript DOM plugin only **
          * @param {string} id - The view id.
          */
-        runAgainstId(id: string, callback: (element: View) => void);
+        runAgainstId(id: string, callback: (element: ViewBase) => void);
 
         /**
          * Executes a function on the child view components with the className. ** NativeScript DOM plugin only **
          * @param {string} className - The tag name to get children elements with.
          */
-        runAgainstClasses(className: string, callback: (element: View) => void);
+        runAgainstClasses(className: string, callback: (element: ViewBase) => void);
 
 
         /**
          * Executes a function on the child view components with the tagName. ** NativeScript DOM plugin only **
          * @param {string} tagName - The tag name to get children elements with.
          */
-        runAgainstTagNames(tagName: string, callback: (element: View) => void);
+        runAgainstTagNames(tagName: string, callback: (element: ViewBase) => void);
 
 
         /**
@@ -129,7 +129,7 @@ interface classList {
      * @param {string} className - The class to toggle.
      * @param {boolean} force - Force this class on (true) or off (false) the class list
      */
-    toggle(className: string, force: boolean);
+    toggle(className: string, force?: boolean);
 
     /**
     * Get the class at the specified location in the classList.
@@ -144,4 +144,4 @@ interface classList {
      * @returns - True if the class name exists in the class list.
      */
     contains(className: string);
-}    
+}
