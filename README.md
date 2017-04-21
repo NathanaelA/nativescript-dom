@@ -5,6 +5,7 @@
 # NativeScript-DOM
 A class of DOM based NativeScript functions
 
+
 ## License
 This is released under the MIT License, meaning you are free to include this in any type of program -- However for entities that need a support contract, changes, enhancements and/or a commercial license please contact me at [http://nativescript.tools](http://nativescript.tools).
 
@@ -17,6 +18,14 @@ I also do contract work; so if you have a module you want built for NativeScript
 Please feel free to fork this repo and update the functions or add additional DOM based functions!
 
 ## Installation 
+To use in Nativescript 2.5 or earlier type:
+
+```bash
+tns plugin add nativescript-dom@1.1.0`
+```
+
+For NativeScript 3.0 and later type
+
 ```bash
 tns plugin add nativescript-dom  
 ```
@@ -123,3 +132,4 @@ add a reference in your `references.d.ts` file. Below is the snippet you can pas
 - [Brad Martin](https://github.com/bradmartin) - For the TS Typings
 - [Danny Feliz](https://github.com/DannyFeliz) - For Documentation Updates
 - [CrazyPython](https://github.com/CrazyPython) - For Documentation Updates
+- [Ludwik Trammer](https://github.com/ludwiktrammer) - For 3.0 compatibility

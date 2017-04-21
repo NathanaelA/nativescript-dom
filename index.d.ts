@@ -129,7 +129,7 @@ interface classList {
      * @param {string} className - The class to toggle.
      * @param {boolean} force - Force this class on (true) or off (false) the class list
      */
-    toggle(className: string, force: boolean);
+    toggle(className: string, force?: boolean);
 
     /**
     * Get the class at the specified location in the classList.
@@ -144,4 +144,4 @@ interface classList {
      * @returns - True if the class name exists in the class list.
      */
     contains(className: string);
-}    
+}
