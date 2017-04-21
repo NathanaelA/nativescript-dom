@@ -7,3 +7,5 @@
 - v1.06 - Compatibility with NS 2.2.x
 - v1.07 - Updated docs & Thanks to Brad for TypeScript typings!
 - v1.09 - getElementByTagName now supports *
+- v1.10 - Fixed view.runAgainstId (copy/paste error)
+- v2.00 - NativeScript 3.0 Compatibility (Doesn't work with v2.5 or before)

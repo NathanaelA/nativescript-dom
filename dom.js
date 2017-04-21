@@ -1,11 +1,11 @@
 /**********************************************************************************
- * (c) 2015-2016, Master Technology
+ * (c) 2015-2017, Master Technology
  * Licensed under the MIT license or contact me for a Support or Commercial License
  *
  * I do contract work in most languages, so let me solve your problems!
  *
  * Any questions please feel free to email me or put a issue up on the github repo
- * Version 0.0.7                                      Nathan@master-technology.com
+ * Version 0.0.8                                      Nathan@master-technology.com
  *********************************************************************************/
 "use strict";
 
