@@ -5,10 +5,16 @@
   "main": "dom",
   "typings": "index.d.ts",
   "nativescript": {
-    "platforms": {
-      "android": "1.0.0",
-      "ios": "1.0.0"
-    }
+	"platforms": {
+	  "android": "1.0.0",
+	  "ios": "1.0.0"
+	},
+	"plugin": {
+	  "nan": "false",
+	  "pan": "true",
+	  "core3": "false",
+	  "category": "Processing"
+	}
   },
   "repository": {
     "type": "git",
@@ -32,7 +38,7 @@
       "name": "Brad Martin",
       "email": "bradwaynemartin@gmail.com",
       "url": "https://github.com/bradmartin"
-    },
+    }
   ],
   "license": {
     "type": "MIT",
