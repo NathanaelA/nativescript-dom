@@ -27,7 +27,7 @@ tns plugin add nativescript-dom
 To use in Nativescript 2.5 or earlier type:
 
 ```bash
-tns plugin add nativescript-dom@1.1.0`
+tns plugin add nativescript-dom@1.1.0
 ```
 
 ## Usage
