@@ -18,16 +18,16 @@ I also do contract work; so if you have a module you want built for NativeScript
 Please feel free to fork this repo and update the functions or add additional DOM based functions!
 
 ## Installation 
-To use in Nativescript 2.5 or earlier type:
-
-```bash
-tns plugin add nativescript-dom@1.1.0`
-```
-
 For NativeScript 3.0 and later type
 
 ```bash
 tns plugin add nativescript-dom  
+```
+
+To use in Nativescript 2.5 or earlier type:
+
+```bash
+tns plugin add nativescript-dom@1.1.0`
 ```
 
 ## Usage

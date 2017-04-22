@@ -1,18 +1,18 @@
 {
   "name": "nativescript-dom",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "A NativeScript module for DOM Emulation",
   "main": "dom",
   "typings": "index.d.ts",
   "nativescript": {
 	"platforms": {
-	  "android": "1.0.0",
-	  "ios": "1.0.0"
+	  "android": "3.0.0",
+	  "ios": "3.0.0"
 	},
 	"plugin": {
 	  "nan": "false",
 	  "pan": "true",
-	  "core3": "false",
+	  "core3": "true",
 	  "category": "Processing"
 	}
   },
@@ -38,7 +38,12 @@
       "name": "Brad Martin",
       "email": "bradwaynemartin@gmail.com",
       "url": "https://github.com/bradmartin"
-    }
+    },
+	{
+	  "name": "Ludwik Trammer",
+	  "email": "ludwik@gmail.com",
+	  "url": "https://github.com/ludwiktrammer"
+	}
   ],
   "license": {
     "type": "MIT",
@@ -48,5 +53,8 @@
     "url": "https://github.com/nathanaela/nativescript-dom/issues"
   },
   "homepage": "https://github.com/nathanaela/nativescript-dom",
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "peerDependencies": {
+	"tns-core-modules": "^3.0.0 || ^3.0.0-rc.1"
+  }
 }

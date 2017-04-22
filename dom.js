@@ -5,21 +5,19 @@
  * I do contract work in most languages, so let me solve your problems!
  *
  * Any questions please feel free to email me or put a issue up on the github repo
- * Version 0.0.8                                      Nathan@master-technology.com
+ * Version 0.1.0                                      Nathan@master-technology.com
  *********************************************************************************/
 "use strict";
 
 /* jshint node: true, browser: true, unused: true, undef: true */
-/* global global, android, com, java, javax, exit, UIDevice, CFAbsoluteTimeGetCurrent, NSRunLoop, NSDate */
-
+/* global global */
 
 // Load the required modules
 var viewBase = require('ui/core/view-base');
 var frame = require('ui/frame');
 
-
 // global.android is already defined on android devices
-// We are defining global.ios on ios devices
+// We are defining global.ios on ios devices, since the iOS team can't seem to do it.  ;-)
 if (global.NSObject && global.NSString && typeof global.ios === "undefined") {
     global.ios = true;
     Object.freeze(global.ios);
@@ -93,52 +91,29 @@ if (!viewBase.ViewBase.prototype.getElementsByTagName) {
 
 if (!viewBase.ViewBase.prototype.classList) {
     var classList = function(t) {
-        var curClassList = "";
+		var curClassList = "";
 
-        // V2.2 Change
-        if (typeof t.cssClasses !== "undefined") {
-            this._resync = function() {
-                if (curClassList === t.className) {
-                    return;
-                }
+		this._resync = function () {
+			if (curClassList === t.className) {
+				return;
+			}
 
-                // We need to zero our length; so that we can re-add anything that exists in the parent class
-                this.length = 0;
-                var self = this;
-                t.cssClasses.forEach(function(item) { self.push(item); });
-            };
+			// We need to zero our length; so that we can re-add anything that exists in the parent class
+			this.length = 0;
+			var self = this;
+			t.cssClasses.forEach(function (item) {
+				self.push(item);
+			});
+		};
 
-            this._update = function () {
-                curClassList = this.join(" ");
-                t.className = curClassList ;
-            };
+		this._update = function () {
+			curClassList = this.join(" ");
+			t.className = curClassList;
+		};
 
-        } else {
 
-            this._resync = function () {
-                if (curClassList === t.className) {
-                    return;
-                }
-                var cls = t._cssClasses;
-                var len = cls.length;
-
-                // We need to zero our length; so that we can re-add anything that exists in the parent class
-                this.length = 0;
-                for (var i = 0; i < len; i++) {
-                    if (!this.contains(cls[i])) {
-                        this.push(cls[i]);
-                    }
-                }
-            };
-
-            this._update = function () {
-                t.className = this.join(" ");
-                curClassList = t.className;
-            };
-        }
-
-        this._resync();
-    };
+		this._resync();
+	};
     classList.prototype = [];
     classList.prototype.toString = function() {
         this._resync();
@@ -233,8 +208,6 @@ global.runAgainstId = function(id, func) {
 viewBase.ViewBase.prototype.runAgainstId = function(id, func) {
     runAgainstId(this, id, func);
 };
-
-
 
 
 /*** Support routines, not publicly accessible ***/
