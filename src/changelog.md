@@ -9,3 +9,4 @@
 - v1.09 - getElementByTagName now supports *
 - v1.10 - Fixed view.runAgainstId (copy/paste error)
 - v2.00 - NativeScript 3.0 Compatibility (Does not work with NativeScript v2.5 or before)
+- v2.01 - Eliminate NativeScript 3.0 Peer dependancy.
