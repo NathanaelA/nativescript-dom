@@ -73,7 +73,6 @@ declare module "ui/core/view-base" {
          */
         getElementsByTagName(tagName: string): Array<ViewBase>;
 
-
         /**
          * Execute a function on any child view with the id. ** NativeScript DOM plugin only **
          * @param {string} id - The view id.
@@ -86,13 +85,11 @@ declare module "ui/core/view-base" {
          */
         runAgainstClasses(className: string, callback: (element: ViewBase) => void);
 
-
         /**
          * Executes a function on the child view components with the tagName. ** NativeScript DOM plugin only **
          * @param {string} tagName - The tag name to get children elements with.
          */
         runAgainstTagNames(tagName: string, callback: (element: ViewBase) => void);
-
 
         /**
          * Property that contains the CSS classes for a view component.

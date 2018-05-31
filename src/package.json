@@ -1,6 +1,6 @@
 {
   "name": "nativescript-dom",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A NativeScript module for DOM Emulation",
   "main": "dom",
   "typings": "index.d.ts",
@@ -53,8 +53,5 @@
     "url": "https://github.com/nathanaela/nativescript-dom/issues"
   },
   "homepage": "https://github.com/nathanaela/nativescript-dom",
-  "readmeFilename": "README.md",
-  "peerDependencies": {
-	"tns-core-modules": "^3.0.0 || ^3.0.0-rc.1"
-  }
+  "readmeFilename": "README.md"
 }
