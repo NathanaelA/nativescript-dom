@@ -13,8 +13,8 @@
 /* global global */
 
 // Load the required modules
-var viewBase = require('ui/core/view-base');
-var frame = require('ui/frame');
+var viewBase = require('tns-core-modules/ui/core/view-base');
+var frame = require('tns-core-modules/ui/frame');
 
 // global.android is already defined on android devices
 // We are defining global.ios on ios devices, since the iOS team can't seem to do it.  ;-)
