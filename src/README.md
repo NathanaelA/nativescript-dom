@@ -1,12 +1,12 @@
 # NativeScript-Dom
 
+## ProPlugins
+We have an awesome, new service in town!   This service provides tested new and upgraded plugins.  All ProPlugins are already known to work with NativeScript 6.x.
+If you are interested in getting the latest, known working, and enhanced plugins; check out <a href="https://proplugins.org">https://ProPlugins.org</a> -- because I strongly believe in what ProPlugins offers the community all of my development work is being done on the ProPlugins version.
 
-## Developed by
-[![MasterTech](https://plugins.nativescript.rocks/i/mtns.png)](https://plugins.nativescript.rocks/mastertech-nstudio)
-
-
-[![Donate](https://img.shields.io/badge/Donate-PayPal-brightgreen.svg?style=plastic)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=HN8DDMWVGBNQL&lc=US&item_name=Nathanael%20Anderson&item_number=nativescript%2ddom&no_note=1&no_shipping=1&currency_code=USD&bn=PP%2dDonationsBF%3ax%3aNonHosted)
-[![Patreon](https://img.shields.io/badge/Pledge-Patreon-brightgreen.svg?style=plastic)](https://www.patreon.com/NathanaelA)
+## Community
+Please feel free to continue to use this version of the plugin, it is now 100% being maintained by **YOU** the community, and as such
+I will gladly continue to support the community version by accepting any/all PR's for this plugin and publish it.  I will attempt to verify the PR doesn't have any backdoors; but I won't be doing any testing, so if it is broken it is up to you to send a PR!
 
 ## Updates
 Please feel free to fork this repo and update the functions or add additional DOM based functions!
