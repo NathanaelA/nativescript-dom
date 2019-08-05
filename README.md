@@ -1,4 +1,4 @@
-<a href="https://proplugins.org"><img src="src/unmaintained.svg" height="30px" width="100%"></a>
+<a href="https://proplugins.org"><img src="https://proplugins.org/logos/unmaintained.svg" height="30px" width="100%"></a>
 
 # NativeScript-Dom
 
